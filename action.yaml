@@ -1,0 +1,31 @@
+name: Run kubectl command
+description: An action that runs a kubectl command against a kubernetes cluster in GCP
+branding:
+  icon: 'terminal'
+  color: 'blue'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.gcp_account_credentials }}
+    - ${{ inputs.gcp_project }}
+    - ${{ inputs.gcp_cluster }}
+    - ${{ inputs.gcp_zone }}
+    - ${{ inputs.kubectl_command }}
+inputs:
+  gcp_account_credentials:
+    description: 'Base64 encoded GCP service account credentials'
+    required: true
+  gcp_project:
+    description: 'GCP project name'
+    required: true
+  gcp_cluster:
+    description: 'GCP kubernetes cluster name'
+    required: true
+  gcp_zone:
+    description: 'GCP kubernetes cluster zone'
+    required: true
+  kubectl_command:
+    description: 'Kubectl command to run'
+    required: true
+  
